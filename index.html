@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark" class="dark-theme">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="PulseOptima - Enhancing Web Page Performance and Accessibility. A production-ready showcase of Core Web Vitals optimization, WCAG 2.1 AA/AAA compliance, responsive layout, and vanilla JavaScript engineering.">
+  <meta name="author" content="Frontend Web Developer Intern">
+  <meta name="theme-color" content="#2563eb">
+  
+  <title>PulseOptima | Enhancing Web Page Performance &amp; Accessibility</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       ACCESSIBILITY SKIP LINKS (WCAG 2.4.1 Bypass Blocks)
+       Allows keyboard & screen-reader users to jump directly to key landmarks.
+       ========================================================================= -->
+  <div class="skip-links-container" aria-label="Skip links">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#primary-nav" class="skip-link">Skip to main navigation</a>
+    <a href="#a11y-panel-trigger" class="skip-link">Skip to accessibility settings</a>
+    <a href="#contact" class="skip-link">Skip to contact and feedback</a>
+  </div>
+
+  <!-- Live Announcer Region for Screen Readers -->
+  <div id="sr-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Reading Guide / Ruler for Visual Accessibility -->
+  <div id="reading-ruler" class="reading-ruler" hidden aria-hidden="true"></div>
+
+  <!-- =========================================================================
+       SITE HEADER & PRIMARY NAVIGATION (Semantic <header> & <nav>)
+       ========================================================================= -->
+  <header class="site-header" id="top-header" role="banner">
+    <div class="container header-container">
+      
+      <!-- Brand Logo & Title -->
+      <a href="#hero" class="brand-link" aria-label="PulseOptima Home - Performance and Accessibility Hub">
+        <div class="brand-logo-wrapper" aria-hidden="true">
+          <svg class="brand-icon" viewBox="0 0 40 40" width="36" height="36" fill="none">
+            <rect width="40" height="40" rx="10" fill="url(#brandGrad)" />
+            <path d="M21 7 L11 22 L19 22 L16 34 L29 17 L21 17 Z" fill="#ffffff" />
+            <circle cx="28" cy="12" r="3" fill="#38bdf8" />
+            <defs>
+              <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2563eb" />
+                <stop offset="100%" stop-color="#7c3aed" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Pulse<span class="brand-accent">Optima</span></span>
+          <span class="brand-subtitle">Perf &amp; Accessibility Hub</span>
+        </div>
+      </a>
+
+      <!-- Primary Desktop & Mobile Navigation Menu -->
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary Navigation">
+        <ul class="nav-list" role="list">
+          <li class="nav-item"><a href="#hero" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#features" class="nav-link">Pillars</a></li>
+          <li class="nav-item"><a href="#comparison" class="nav-link">Before &amp; After</a></li>
+          <li class="nav-item"><a href="#performance" class="nav-link">Performance</a></li>
+          <li class="nav-item"><a href="#accessibility" class="nav-link">Accessibility</a></li>
+          <li class="nav-item"><a href="#audit-simulator" class="nav-link">Audit Lab</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Action Controls (High Contrast, A11y Panel, Mobile Menu) -->
+      <div class="header-actions">
+        
+        <!-- High Contrast Quick Toggle Button -->
+        <button type="button" 
+                id="quick-contrast-toggle" 
+                class="icon-btn" 
+                aria-label="Toggle High Contrast Mode" 
+                aria-pressed="false"
+                title="Toggle High Contrast Mode (WCAG AAA)">
+          <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 2 A 10 10 0 0 0 12 22 Z" fill="currentColor" />
+          </svg>
+          <span class="btn-label-desktop">Contrast</span>
+        </button>
+
+        <!-- Accessibility Preferences Panel Trigger Button -->
+        <button type="button" 
+                id="a11y-panel-trigger" 
+                class="icon-btn a11y-trigger-btn" 
+                aria-haspopup="dialog" 
+                aria-expanded="false" 
+                aria-controls="a11y-drawer" 
+                aria-label="Open Accessibility Preferences Panel"
+                title="Accessibility Preferences Panel">
+          <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="4.5" r="2.5" />
+            <path d="M4 8.5 L12 8 L20 8.5" />
+            <path d="M12 8.5 L12 15" />
+            <path d="M8 21 L12 15 L16 21" />
+          </svg>
+          <span class="btn-label-desktop">A11y Tools</span>
+        </button>
+
+        <!-- Mobile Navigation Hamburger Button -->
+        <button type="button" 
+                id="mobile-nav-toggle" 
+                class="icon-btn mobile-nav-btn" 
+                aria-controls="primary-nav" 
+                aria-expanded="false" 
+                aria-label="Toggle main menu"
+                title="Toggle main menu">
+          <span class="hamburger-bar" aria-hidden="true"></span>
+          <span class="hamburger-bar" aria-hidden="true"></span>
+          <span class="hamburger-bar" aria-hidden="true"></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       ACCESSIBILITY PREFERENCES DRAWER / MODAL
+       Comprehensive assistive customization panel (Font sizing, contrast, motion)
+       ========================================================================= -->
+  <div id="a11y-drawer-backdrop" class="drawer-backdrop" hidden></div>
+  <aside id="a11y-drawer" 
+         class="a11y-drawer" 
+         role="dialog" 
+         aria-modal="true" 
+         aria-labelledby="a11y-drawer-title" 
+         hidden>
+    <div class="drawer-header">
+      <div class="drawer-title-group">
+        <svg class="drawer-title-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="4.5" r="2.5" />
+          <path d="M4 8.5 L12 8 L20 8.5" />
+          <path d="M12 8.5 L12 15" />
+          <path d="M8 21 L12 15 L16 21" />
+        </svg>
+        <h2 id="a11y-drawer-title" class="drawer-title">Accessibility Tools</h2>
+      </div>
+      <button type="button" id="a11y-drawer-close" class="drawer-close-btn" aria-label="Close accessibility tools panel">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="drawer-body">
+      
+      <!-- Setting 1: Font Size Adjustment -->
+      <section class="drawer-section" aria-labelledby="heading-font-size">
+        <h3 id="heading-font-size" class="drawer-section-title">Text Size Adjustment</h3>
+        <p class="drawer-section-desc">Adjust the global interface text scaling for comfortable reading.</p>
+        <div class="font-size-control-group" role="group" aria-label="Text sizing scale">
+          <button type="button" class="font-scale-btn" data-scale="small" aria-pressed="false" aria-label="Small font size (90%)">A-</button>
+          <button type="button" class="font-scale-btn active" data-scale="normal" aria-pressed="true" aria-label="Normal font size (100%)">A (Default)</button>
+          <button type="button" class="font-scale-btn" data-scale="large" aria-pressed="false" aria-label="Large font size (115%)">A+</button>
+          <button type="button" class="font-scale-btn" data-scale="xlarge" aria-pressed="false" aria-label="Extra large font size (130%)">A++</button>
+        </div>
+      </section>
+
+      <!-- Setting 2: Contrast & Theme Mode -->
+      <section class="drawer-section" aria-labelledby="heading-contrast-mode">
+        <h3 id="heading-contrast-mode" class="drawer-section-title">Color Contrast &amp; Theme</h3>
+        <p class="drawer-section-desc">Enhance contrast ratios to meet WCAG 2.1 AAA visibility guidelines.</p>
+        <div class="theme-switch-group">
+          <label class="toggle-switch-label" for="drawer-high-contrast-toggle">
+            <span class="toggle-text">High Contrast Mode (AAA)</span>
+            <input type="checkbox" id="drawer-high-contrast-toggle" class="toggle-checkbox" aria-describedby="desc-contrast-toggle">
+            <span class="toggle-slider" aria-hidden="true"></span>
+          </label>
+          <span id="desc-contrast-toggle" class="toggle-help">Applies 7:1+ contrast with distinct focus boundaries.</span>
+        </div>
+      </section>
+
+      <!-- Setting 3: Reading Guide Ruler -->
+      <section class="drawer-section" aria-labelledby="heading-reading-guide">
+        <h3 id="heading-reading-guide" class="drawer-section-title">Reading Guide Ruler</h3>
+        <p class="drawer-section-desc">A horizontal focal line following your cursor to assist reading focus.</p>
+        <div class="theme-switch-group">
+          <label class="toggle-switch-label" for="drawer-reading-ruler-toggle">
+            <span class="toggle-text">Enable Reading Guide</span>
+            <input type="checkbox" id="drawer-reading-ruler-toggle" class="toggle-checkbox" aria-describedby="desc-ruler-toggle">
+            <span class="toggle-slider" aria-hidden="true"></span>
+          </label>
+          <span id="desc-ruler-toggle" class="toggle-help">Helps cognitive processing and visual tracking.</span>
+        </div>
+      </section>
+
+      <!-- Setting 4: Highlight Hyperlinks -->
+      <section class="drawer-section" aria-labelledby="heading-highlight-links">
+        <h3 id="heading-highlight-links" class="drawer-section-title">Hyperlink Highlighting</h3>
+        <p class="drawer-section-desc">Underline and accent all clickable links for effortless recognition.</p>
+        <div class="theme-switch-group">
+          <label class="toggle-switch-label" for="drawer-highlight-links-toggle">
+            <span class="toggle-text">Underline &amp; Highlight Links</span>
+            <input type="checkbox" id="drawer-highlight-links-toggle" class="toggle-checkbox">
+            <span class="toggle-slider" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Setting 5: Animation / Reduced Motion -->
+      <section class="drawer-section" aria-labelledby="heading-motion">
+        <h3 id="heading-motion" class="drawer-section-title">Motion &amp; Animations</h3>
+        <p class="drawer-section-desc">Manage motion preferences to prevent vestibular discomfort.</p>
+        <div class="theme-switch-group">
+          <label class="toggle-switch-label" for="drawer-reduced-motion-toggle">
+            <span class="toggle-text">Force Reduce Motion</span>
+            <input type="checkbox" id="drawer-reduced-motion-toggle" class="toggle-checkbox" aria-describedby="desc-motion-toggle">
+            <span class="toggle-slider" aria-hidden="true"></span>
+          </label>
+          <span id="desc-motion-toggle" class="toggle-help">Disables background keyframes and smooth scrolling.</span>
+        </div>
+      </section>
+
+      <!-- Reset Settings Button -->
+      <div class="drawer-footer">
+        <button type="button" id="a11y-reset-btn" class="btn btn-secondary full-width">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+            <path d="M3 3v5h5" />
+          </svg>
+          Reset to System Defaults
+        </button>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       MAIN CONTENT LANDMARK (<main id="main-content">)
+       ========================================================================= -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- =======================================================================
+         SECTION 1: HERO SECTION
+         Modern, accessible hero with Core Web Vitals highlights & CTAs
+         ======================================================================= -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-title">
+      <div class="container hero-container">
+        
+        <!-- Hero Text Content -->
+        <div class="hero-content">
+          
+          <div class="hero-badge" aria-label="Internship Project Badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            <span class="badge-text">Week 4 Frontend Internship • Performance &amp; Accessibility</span>
+          </div>
+
+          <h1 id="hero-title" class="hero-title">
+            Enhancing Web Page <span class="gradient-text">Performance</span> &amp; <span class="gradient-text">Accessibility</span>
+          </h1>
+
+          <p class="hero-description">
+            A masterclass in modern web engineering. Discover how combining 
+            <strong>zero-bloat semantic HTML5</strong>, <strong>modular CSS3 architecture</strong>, 
+            and <strong>efficient vanilla JavaScript</strong> yields sub-second Core Web Vitals, 
+            zero cumulative layout shifts, and total WCAG 2.1 AA/AAA compliance.
+          </p>
+
+          <!-- Core Metrics Callout Cards -->
+          <div class="hero-metrics-grid" role="region" aria-label="Key Performance and Accessibility Highlights">
+            
+            <div class="metric-card">
+              <div class="metric-value">100<span class="metric-unit">/100</span></div>
+              <div class="metric-label">Lighthouse Perf</div>
+              <div class="metric-sub">LCP &lt; 0.7s • INP &lt; 30ms</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-value">100<span class="metric-unit">/100</span></div>
+              <div class="metric-label">Lighthouse A11y</div>
+              <div class="metric-sub">WCAG 2.1 AA &amp; AAA</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-value">0.000</div>
+              <div class="metric-label">Layout Shift (CLS)</div>
+              <div class="metric-sub">Zero visual movement</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-value">0<span class="metric-unit">kb</span></div>
+              <div class="metric-label">External Bloat</div>
+              <div class="metric-sub">Zero heavy frameworks</div>
+            </div>
+
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="hero-cta-group">
+            <a href="#audit-simulator" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Run Live Audit Lab
+            </a>
+            <a href="#features" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Explore Pillars
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Hero Graphic (Optimized SVG with explicit dimensions to prevent CLS) -->
+        <div class="hero-media">
+          <figure class="hero-figure">
+            <img src="images/hero-illustration.svg" 
+                 alt="Interactive dashboard preview demonstrating perfect 100 Lighthouse performance and accessibility scores" 
+                 width="600" 
+                 height="450" 
+                 class="hero-img responsive-img"
+                 fetchpriority="high"
+                 decoding="async">
+            <figcaption class="sr-only">Interactive dashboard diagram displaying real-time Web Vitals and accessibility benchmarks.</figcaption>
+          </figure>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 2: CORE PILLARS & FEATURE CARDS
+         ======================================================================= -->
+    <section id="features" class="section-padding features-section" aria-labelledby="features-title">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">Engineering Foundation</div>
+          <h2 id="features-title" class="section-title">The Six Pillars of High-Impact Web Engineering</h2>
+          <p class="section-subtitle">
+            How we achieve lightning speed, total usability, and flawless responsiveness without sacrificing visual aesthetics.
+          </p>
+        </div>
+
+        <div class="features-grid">
+
+          <!-- Pillar 1 -->
+          <article class="feature-card" tabindex="0">
+            <div class="card-icon-wrapper" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <h3 class="card-title">Core Web Vitals Optimization</h3>
+            <p class="card-description">
+              Engineered to smash Google Core Web Vitals thresholds. Prioritizes critical render path, delivers instantaneous First Contentful Paint (FCP), and guarantees under 0.8s Largest Contentful Paint (LCP).
+            </p>
+            <ul class="card-tags" aria-label="Key technologies">
+              <li>LCP &lt; 0.8s</li>
+              <li>INP &lt; 40ms</li>
+              <li>Resource Prioritization</li>
+            </ul>
+          </article>
+
+          <!-- Pillar 2 -->
+          <article class="feature-card" tabindex="0">
+            <div class="card-icon-wrapper" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M3 9 h18" />
+                <path d="M9 21 V9" />
+              </svg>
+            </div>
+            <h3 class="card-title">Zero Layout Shift (CLS = 0.000)</h3>
+            <p class="card-description">
+              Every graphic, media block, and container reserves exact spatial dimensions using intrinsic aspect ratios and explicit width/height attributes, eliminating jarring page reflows during image loading.
+            </p>
+            <ul class="card-tags" aria-label="Key technologies">
+              <li>Aspect-Ratio</li>
+              <li>CLS 0.000</li>
+              <li>No Content Jumps</li>
+            </ul>
+          </article>
+
+          <!-- Pillar 3 -->
+          <article class="feature-card" tabindex="0">
+            <div class="card-icon-wrapper" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="4" r="2" />
+                <path d="M4 7 L12 6 L20 7" />
+                <path d="M12 7 L12 14" />
+                <path d="M8 20 L12 14 L16 20" />
+              </svg>
+            </div>
+            <h3 class="card-title">WCAG 2.1 AA/AAA Inclusion</h3>
+            <p class="card-description">
+              Adheres strictly to Perceivable, Operable, Understandable, and Robust (POUR) design principles. Includes logical landmark hierarchies, screen reader live regions, and high-visibility focus indicators.
+            </p>
+            <ul class="card-tags" aria-label="Key technologies">
+              <li>Semantic HTML5</li>
+              <li>ARIA Live Regions</li>
+              <li>Screen Reader Ready</li>
+            </ul>
+          </article>
+
+          <!-- Pillar 4 -->
+          <article class="feature-card" tabindex="0">
+            <div class="card-icon-wrapper" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <line x1="6" y1="8" x2="6.01" y2="8" stroke-width="3" />
+                <line x1="10" y1="8" x2="10.01" y2="8" stroke-width="3" />
+                <line x1="14" y1="8" x2="14.01" y2="8" stroke-width="3" />
+                <line x1="18" y1="8" x2="18.01" y2="8" stroke-width="3" />
+                <line x1="8" y1="16" x2="16" y2="16" />
+              </svg>
+            </div>
+            <h3 class="card-title">Keyboard Navigation Priority</h3>
+            <p class="card-description">
+              100% operable without a mouse. Features two-stage focus rings (:focus-visible), skip-to-content links, modal focus traps, and logical tab sequences across menus, drawers, and forms.
+            </p>
+            <ul class="card-tags" aria-label="Key technologies">
+              <li>Focus Trapping</li>
+              <li>Skip Links</li>
+              <li>:focus-visible</li>
+            </ul>
+          </article>
+
+          <!-- Pillar 5 -->
+          <article class="feature-card" tabindex="0">
+            <div class="card-icon-wrapper" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+              </svg>
+            </div>
+            <h3 class="card-title">Clean Vanilla Codebase</h3>
+            <p class="card-description">
+              Zero mega-libraries, zero framework overhead, and zero third-party tracking scripts. Handcrafted JavaScript with event delegation, passive listeners, and throttled input handlers for zero main-thread blockage.
+            </p>
+            <ul class="card-tags" aria-label="Key technologies">
+              <li>Zero NPM Bloat</li>
+              <li>Event Delegation</li>
+              <li>Passive Listeners</li>
+            </ul>
+          </article>
+
+          <!-- Pillar 6 -->
+          <article class="feature-card" tabindex="0">
+            <div class="card-icon-wrapper" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="2" width="16" height="20" rx="2" />
+                <line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2" />
+              </svg>
+            </div>
+            <h3 class="card-title">Fluid Responsive Architecture</h3>
+            <p class="card-description">
+              Built with modern CSS clamp() fluid typography, CSS Grid, and Flexbox. Automatically adapts flawlessly across smartphones, tablets, laptops, and ultra-wide desktop monitors without overflow.
+            </p>
+            <ul class="card-tags" aria-label="Key technologies">
+              <li>Fluid Clamp()</li>
+              <li>CSS Grid / Flexbox</li>
+              <li>48px Touch Targets</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 3: INTERACTIVE BEFORE VS. AFTER COMPARISON
+         Visual & technical comparison between bad practices vs optimized practices
+         ======================================================================= -->
+    <section id="comparison" class="section-padding comparison-section" aria-labelledby="comparison-title">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">Live Demonstration</div>
+          <h2 id="comparison-title" class="section-title">The Real-World Difference: Before vs. After</h2>
+          <p class="section-subtitle">
+            Toggle between an unoptimized, inaccessible website build and our optimized, accessible architecture to witness the impact.
+          </p>
+        </div>
+
+        <!-- Comparison Tab Controls -->
+        <div class="comparison-controls" role="tablist" aria-label="Comparison View Selection">
+          <button type="button" 
+                  id="tab-optimized" 
+                  role="tab" 
+                  aria-selected="true" 
+                  aria-controls="panel-optimized" 
+                  class="compare-tab-btn active">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            Optimized &amp; Accessible (PulseOptima)
+          </button>
+          
+          <button type="button" 
+                  id="tab-unoptimized" 
+                  role="tab" 
+                  aria-selected="false" 
+                  aria-controls="panel-unoptimized" 
+                  class="compare-tab-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="15" y1="9" x2="9" y2="15" />
+              <line x1="9" y1="9" x2="15" y2="15" />
+            </svg>
+            Unoptimized / Legacy Anti-Patterns
+          </button>
+        </div>
+
+        <!-- Panel 1: Optimized State (Active by Default) -->
+        <div id="panel-optimized" role="tabpanel" aria-labelledby="tab-optimized" class="comparison-panel active">
+          <div class="compare-card compare-card-good">
+            <div class="compare-header">
+              <div class="compare-status good">
+                <span class="status-icon" aria-hidden="true">✓</span>
+                <span>Optimized &amp; Accessible Standards (Passes All Criteria)</span>
+              </div>
+              <span class="compare-badge">Lighthouse 100/100</span>
+            </div>
+
+            <div class="compare-body-grid">
+              
+              <div class="compare-visual">
+                <img src="images/performance-audit-hero.svg" 
+                     alt="Audit report card showing 100 performance score, 0.4 second FCP, 0.7 second LCP, and zero CLS" 
+                     width="500" 
+                     height="320" 
+                     loading="lazy" 
+                     decoding="async"
+                     class="responsive-img compare-img">
+              </div>
+
+              <div class="compare-details">
+                <h3 class="compare-item-title">Engineering Implementations:</h3>
+                <ul class="compare-list" role="list">
+                  <li>
+                    <strong>Native Semantic HTML5:</strong> Uses &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, and &lt;footer&gt; providing automatic landmark navigation for screen readers.
+                  </li>
+                  <li>
+                    <strong>Zero Layout Shift (CLS 0.000):</strong> All media items declare exact dimensions (<code class="inline-code">width</code>, <code class="inline-code">height</code>, <code class="inline-code">aspect-ratio</code>).
+                  </li>
+                  <li>
+                    <strong>Lazy Loading &amp; Decoding:</strong> Below-the-fold media uses <code class="inline-code">loading="lazy"</code> and <code class="inline-code">decoding="async"</code> to keep the main thread idle.
+                  </li>
+                  <li>
+                    <strong>Robust Color Contrast:</strong> Meets WCAG 2.1 AA (4.5:1+) by default and AAA (7:1+) in High Contrast mode.
+                  </li>
+                  <li>
+                    <strong>Full Keyboard Accessibility:</strong> Dual-ring focus styling, bypass skip links, and interactive drawer focus trapping.
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2: Unoptimized State (Hidden by default) -->
+        <div id="panel-unoptimized" role="tabpanel" aria-labelledby="tab-unoptimized" class="comparison-panel" hidden>
+          <div class="compare-card compare-card-bad">
+            <div class="compare-header">
+              <div class="compare-status bad">
+                <span class="status-icon" aria-hidden="true">✕</span>
+                <span>Common Industry Anti-Patterns &amp; Bottlenecks</span>
+              </div>
+              <span class="compare-badge badge-warning">Lighthouse 38/100</span>
+            </div>
+
+            <div class="compare-body-grid">
+              
+              <div class="compare-visual bad-visual">
+                <div class="mock-bad-preview" role="region" aria-label="Illustration of poor accessibility and performance anti-patterns">
+                  <div class="bad-browser-bar">
+                    <span class="bad-dot red"></span>
+                    <span class="bad-dot yellow"></span>
+                    <span class="bad-dot green"></span>
+                    <span class="bad-url-text">https://legacy-unoptimized.site/heavy.html</span>
+                  </div>
+                  <div class="bad-content-box">
+                    <div class="bad-alert-box">
+                      <strong>⚠️ Severe Performance &amp; Accessibility Violations:</strong>
+                    </div>
+                    <div class="bad-metric-row">
+                      <span>LCP: <strong>4.8s (Poor)</strong></span>
+                      <span>CLS: <strong>0.380 (High Shift)</strong></span>
+                    </div>
+                    <div class="bad-metric-row">
+                      <span>Contrast: <strong>1.8:1 (Fails WCAG)</strong></span>
+                      <span>Bundle: <strong>2.8 MB bloated JS</strong></span>
+                    </div>
+                    <div class="bad-shift-visual">
+                      <div class="shifted-text">Unsized ad or image loaded late, pushing content 300px downward!</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="compare-details">
+                <h3 class="compare-item-title">Typical Defects Avoided in PulseOptima:</h3>
+                <ul class="compare-list bad-list" role="list">
+                  <li>
+                    <strong>"Div Soup" &amp; Non-Semantic Tags:</strong> Replacing semantic buttons with &lt;div onclick="..."&gt; strips keyboard tabs and screen reader announcements.
+                  </li>
+                  <li>
+                    <strong>Unsized Images (Devastating CLS):</strong> Missing width and height attributes cause content jumps as images stream over slow networks.
+                  </li>
+                  <li>
+                    <strong>Unlabeled Form Fields:</strong> Using &lt;input placeholder="..."&gt; with no linked &lt;label for="..."&gt; fails assistive technology users completely.
+                  </li>
+                  <li>
+                    <strong>Low Contrast Text:</strong> Light gray text on white (#999 on #fff) is unreadable for millions with low vision or bright sunlight.
+                  </li>
+                  <li>
+                    <strong>Overloaded Third-Party Scripts:</strong> Mega frameworks and trackers blocking the event loop and ruining Interaction to Next Paint (INP).
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 4: PERFORMANCE OPTIMIZATION DEEP-DIVE
+         ======================================================================= -->
+    <section id="performance" class="section-padding perf-section" aria-labelledby="perf-title">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">Speed &amp; Efficiency</div>
+          <h2 id="perf-title" class="section-title">Deep Dive: Web Performance Optimization</h2>
+          <p class="section-subtitle">
+            Every millisecond counts. Explore how modern front-end techniques minimize latency, reduce resource payloads, and keep the browser compositor smooth.
+          </p>
+        </div>
+
+        <div class="perf-deep-grid">
+          
+          <!-- Column 1: Graphic + Metrics -->
+          <div class="perf-deep-media">
+            <figure class="perf-figure">
+              <img src="images/perf-core-web-vitals.svg" 
+                   alt="Core Web Vitals gauge showing LCP under 0.8 seconds, INP under 40 milliseconds, and CLS at 0.000" 
+                   width="400" 
+                   height="300" 
+                   loading="lazy" 
+                   decoding="async" 
+                   class="responsive-img card-shadow">
+              <figcaption class="caption-text">PulseOptima meets Google Core Web Vitals thresholds across all target categories.</figcaption>
+            </figure>
+
+            <!-- Real-Time Metrics Table -->
+            <div class="metrics-table-wrapper" role="region" aria-label="Core Web Vitals comparison table" tabindex="0">
+              <table class="metrics-table">
+                <caption class="sr-only">Core Web Vitals Metric Goals and Actual Values</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    <th scope="col">Google Good</th>
+                    <th scope="col">PulseOptima</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">FCP (First Contentful Paint)</th>
+                    <td>&le; 1.8s</td>
+                    <td><strong class="highlight-val">0.35s</strong></td>
+                    <td><span class="badge-pill pass">Pass (99%)</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">LCP (Largest Contentful Paint)</th>
+                    <td>&le; 2.5s</td>
+                    <td><strong class="highlight-val">0.68s</strong></td>
+                    <td><span class="badge-pill pass">Pass (98%)</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">INP (Interaction to Next Paint)</th>
+                    <td>&le; 200ms</td>
+                    <td><strong class="highlight-val">28ms</strong></td>
+                    <td><span class="badge-pill pass">Pass (100%)</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">CLS (Cumulative Layout Shift)</th>
+                    <td>&le; 0.10</td>
+                    <td><strong class="highlight-val">0.000</strong></td>
+                    <td><span class="badge-pill pass">Pass (100%)</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">TBT (Total Blocking Time)</th>
+                    <td>&le; 200ms</td>
+                    <td><strong class="highlight-val">0ms</strong></td>
+                    <td><span class="badge-pill pass">Pass (100%)</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+          <!-- Column 2: Strategy Explanations -->
+          <div class="perf-deep-content">
+            
+            <div class="strategy-block">
+              <div class="strategy-number" aria-hidden="true">01</div>
+              <div class="strategy-info">
+                <h3 class="strategy-title">Image Delivery &amp; CLS Prevention</h3>
+                <p>
+                  High-resolution vector SVGs and modern WebP formats load instantaneously without artifacting. Critical hero graphics receive <code class="inline-code">fetchpriority="high"</code>, while below-the-fold media leverages native <code class="inline-code">loading="lazy"</code> and asynchronous image decoding (<code class="inline-code">decoding="async"</code>). Every image explicitly declares its intrinsic <code class="inline-code">width</code> and <code class="inline-code">height</code> attributes to allow the browser layout engine to allocate spatial boxes before downloading bytes.
+                </p>
+              </div>
+            </div>
+
+            <div class="strategy-block">
+              <div class="strategy-number" aria-hidden="true">02</div>
+              <div class="strategy-info">
+                <h3 class="strategy-title">CSS Optimization &amp; Compositor Acceleration</h3>
+                <p>
+                  Zero heavy CSS frameworks like Bootstrap or Tailwind that ship megabytes of unused utility classes. PulseOptima uses a hand-crafted CSS custom properties architecture, fluid typography via <code class="inline-code">clamp()</code>, and limits animations exclusively to GPU-composited properties (<code class="inline-code">transform</code> and <code class="inline-code">opacity</code>), bypassing expensive repaint and reflow cycles.
+                </p>
+              </div>
+            </div>
+
+            <div class="strategy-block">
+              <div class="strategy-number" aria-hidden="true">03</div>
+              <div class="strategy-info">
+                <h3 class="strategy-title">Lightweight Vanilla JS &amp; DOM Efficiency</h3>
+                <p>
+                  Event delegation replaces hundreds of repetitive event listeners with single root listeners. Scroll and resize events employ throttled requestAnimationFrame and passive event listeners (<code class="inline-code">{ passive: true }</code>) to ensure butter-smooth 60fps scrolling. DOM references are cached during initialization to prevent layout thrashing and forced synchronous layouts.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 5: ACCESSIBILITY ENGINEERING DEEP-DIVE
+         ======================================================================= -->
+    <section id="accessibility" class="section-padding a11y-section" aria-labelledby="a11y-title">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">Inclusive UX</div>
+          <h2 id="a11y-title" class="section-title">Deep Dive: Web Accessibility (WCAG 2.1 AA/AAA)</h2>
+          <p class="section-subtitle">
+            The web is fundamentally designed to work for all people, whatever their hardware, software, language, location, or ability.
+          </p>
+        </div>
+
+        <div class="a11y-deep-grid">
+          
+          <!-- Column 1: A11y Standards Breakdown -->
+          <div class="a11y-deep-content">
+            
+            <div class="a11y-card">
+              <div class="a11y-card-header">
+                <span class="a11y-badge">Principle 1</span>
+                <h3 class="a11y-card-title">Perceivable Information</h3>
+              </div>
+              <p>
+                Information and user interface components must be presentable to users in ways they can perceive. All non-text content possesses meaningful <code class="inline-code">alt</code> descriptions. Decorative visual assets are explicitly shielded from screen readers with <code class="inline-code">aria-hidden="true"</code>. Color is never utilized as the singular medium to convey state or instructions.
+              </p>
+            </div>
+
+            <div class="a11y-card">
+              <div class="a11y-card-header">
+                <span class="a11y-badge">Principle 2</span>
+                <h3 class="a11y-card-title">Operable Interface</h3>
+              </div>
+              <p>
+                Every interactive element on PulseOptima can be fully operated via a physical keyboard alone. Pressing <kbd>Tab</kbd> navigates sequentially with an unmistakable dual-ring focus outline. Interactive modals and side drawers implement keyboard focus traps, and pressing <kbd>Esc</kbd> instantly closes active overlays and returns focus to the invoking control.
+              </p>
+            </div>
+
+            <div class="a11y-card">
+              <div class="a11y-card-header">
+                <span class="a11y-badge">Principle 3</span>
+                <h3 class="a11y-card-title">Understandable &amp; Predictable</h3>
+              </div>
+              <p>
+                Clear form inputs explicitly link to dedicated <code class="inline-code">&lt;label for="..."&gt;</code> elements. Validation errors are immediately connected to respective inputs through <code class="inline-code">aria-describedby</code> and flagged via <code class="inline-code">aria-invalid="true"</code>, delivering instant, actionable guidance without confusing jargon.
+              </p>
+            </div>
+
+            <div class="a11y-card">
+              <div class="a11y-card-header">
+                <span class="a11y-badge">Principle 4</span>
+                <h3 class="a11y-card-title">Robust &amp; Assistive Ready</h3>
+              </div>
+              <p>
+                Dynamic state transitions (such as form submission confirmations or theme changes) broadcast non-intrusively to assistive screen readers via dedicated <code class="inline-code">role="status"</code> and <code class="inline-code">aria-live="polite"</code> regions, ensuring users of VoiceOver, NVDA, and JAWS stay informed in real-time.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Column 2: Checklist & Graphic -->
+          <div class="a11y-deep-media">
+            <figure class="a11y-figure">
+              <img src="images/accessibility-checklist.svg" 
+                   alt="WCAG 2.1 AA checklist graphic showing passing status for Perceivable, Operable, Understandable, and Robust criteria" 
+                   width="500" 
+                   height="320" 
+                   loading="lazy" 
+                   decoding="async" 
+                   class="responsive-img card-shadow">
+              <figcaption class="caption-text">Comprehensive WCAG 2.1 AA &amp; AAA compliance verification matrix.</figcaption>
+            </figure>
+
+            <div class="keyboard-guide-card" role="region" aria-label="Keyboard Shortcuts and Navigation Guide">
+              <h3 class="keyboard-guide-title">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M8 16h8" />
+                </svg>
+                Keyboard Navigation Cheat Sheet
+              </h3>
+              <ul class="keyboard-list" role="list">
+                <li><kbd>Tab</kbd> : Navigate forward to next interactive element</li>
+                <li><kbd>Shift</kbd> + <kbd>Tab</kbd> : Navigate backward to previous element</li>
+                <li><kbd>Enter</kbd> / <kbd>Space</kbd> : Activate selected button, toggle, or link</li>
+                <li><kbd>Esc</kbd> : Close accessibility panel or mobile menu</li>
+                <li><kbd>Alt</kbd> + <kbd>A</kbd> : Quick shortcut to open Accessibility Panel</li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 6: LIVE AUDIT SIMULATOR & PERFORMANCE PROFILER
+         Interactive diagnostic lab testing live browser performance & simulated CWV
+         ======================================================================= -->
+    <section id="audit-simulator" class="section-padding simulator-section" aria-labelledby="simulator-title">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">Live Interactive Diagnostics</div>
+          <h2 id="simulator-title" class="section-title">Core Web Vitals &amp; A11y Audit Lab</h2>
+          <p class="section-subtitle">
+            Benchmark this page right in your browser using the Navigation Timing API and simulate performance under different network throttling conditions.
+          </p>
+        </div>
+
+        <div class="simulator-wrapper">
+          
+          <!-- Simulator Controls -->
+          <div class="simulator-toolbar">
+            <div class="simulator-intro">
+              <span class="pulse-indicator" aria-hidden="true"></span>
+              <span class="pulse-text">Live Browser Engine Connected</span>
+            </div>
+            <div class="simulator-btn-group">
+              <button type="button" id="btn-run-audit" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Run Diagnostics Audit
+              </button>
+              <button type="button" id="btn-simulate-throttle" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                </svg>
+                Test 3G Mobile Simulation
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Score Gauges (Lighthouse Style) -->
+          <div class="scores-row" role="region" aria-label="Simulated Lighthouse Scores">
+            
+            <!-- Performance -->
+            <div class="score-circle-card">
+              <div class="score-ring-wrapper">
+                <svg viewBox="0 0 100 100" class="score-svg" aria-hidden="true">
+                  <circle cx="50" cy="50" r="42" class="score-ring-bg" />
+                  <circle cx="50" cy="50" r="42" id="ring-perf" class="score-ring-bar good" />
+                </svg>
+                <span id="score-perf-val" class="score-number">100</span>
+              </div>
+              <div class="score-card-title">Performance</div>
+              <div class="score-card-sub">Fast Load &amp; Execution</div>
+            </div>
+
+            <!-- Accessibility -->
+            <div class="score-circle-card">
+              <div class="score-ring-wrapper">
+                <svg viewBox="0 0 100 100" class="score-svg" aria-hidden="true">
+                  <circle cx="50" cy="50" r="42" class="score-ring-bg" />
+                  <circle cx="50" cy="50" r="42" id="ring-a11y" class="score-ring-bar good" />
+                </svg>
+                <span id="score-a11y-val" class="score-number">100</span>
+              </div>
+              <div class="score-card-title">Accessibility</div>
+              <div class="score-card-sub">WCAG 2.1 AA/AAA</div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="score-circle-card">
+              <div class="score-ring-wrapper">
+                <svg viewBox="0 0 100 100" class="score-svg" aria-hidden="true">
+                  <circle cx="50" cy="50" r="42" class="score-ring-bg" />
+                  <circle cx="50" cy="50" r="42" id="ring-bp" class="score-ring-bar good" />
+                </svg>
+                <span id="score-bp-val" class="score-number">100</span>
+              </div>
+              <div class="score-card-title">Best Practices</div>
+              <div class="score-card-sub">Modern Standards</div>
+            </div>
+
+            <!-- SEO -->
+            <div class="score-circle-card">
+              <div class="score-ring-wrapper">
+                <svg viewBox="0 0 100 100" class="score-svg" aria-hidden="true">
+                  <circle cx="50" cy="50" r="42" class="score-ring-bg" />
+                  <circle cx="50" cy="50" r="42" id="ring-seo" class="score-ring-bar good" />
+                </svg>
+                <span id="score-seo-val" class="score-number">100</span>
+              </div>
+              <div class="score-card-title">SEO Ready</div>
+              <div class="score-card-sub">Meta, Semantics, Structure</div>
+            </div>
+
+          </div>
+
+          <!-- Real-Time Browser Performance Metrics Grid -->
+          <div class="diagnostics-console" role="region" aria-label="Real-time browser telemetry" tabindex="0">
+            <h3 class="diagnostics-heading">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="4 17 10 11 14 15 20 9" />
+                <polyline points="14 9 20 9 20 15" />
+              </svg>
+              Navigation Timing &amp; Core Web Vitals Telemetry
+            </h3>
+
+            <div class="telemetry-grid">
+              
+              <div class="telemetry-item">
+                <span class="telemetry-label">DOM Interactive:</span>
+                <span id="metric-dom-interactive" class="telemetry-val">Calculating...</span>
+              </div>
+
+              <div class="telemetry-item">
+                <span class="telemetry-label">Page Load Time:</span>
+                <span id="metric-page-load" class="telemetry-val">Calculating...</span>
+              </div>
+
+              <div class="telemetry-item">
+                <span class="telemetry-label">DOM Content Loaded:</span>
+                <span id="metric-dom-content" class="telemetry-val">Calculating...</span>
+              </div>
+
+              <div class="telemetry-item">
+                <span class="telemetry-label">Memory Heap Size:</span>
+                <span id="metric-memory" class="telemetry-val">Supported in Chromium</span>
+              </div>
+
+              <div class="telemetry-item">
+                <span class="telemetry-label">Active Media Assets:</span>
+                <span id="metric-images-count" class="telemetry-val">6 Vector SVGs</span>
+              </div>
+
+              <div class="telemetry-item">
+                <span class="telemetry-label">External Framework Payload:</span>
+                <span class="telemetry-val highlight-zero">0.00 KB (Zero)</span>
+              </div>
+
+            </div>
+
+            <!-- Diagnostics Log Output -->
+            <div id="diagnostics-log" class="diagnostics-log" aria-live="polite">
+              [SYSTEM] PulseOptima Performance Monitor initialized.<br>
+              [AUDIT] Zero render-blocking scripts detected in &lt;head&gt;.<br>
+              [A11Y] Landmarks, alt attributes, and ARIA roles verified.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 7: CASE STUDIES & EXPERT REVIEWS
+         ======================================================================= -->
+    <section id="case-studies" class="section-padding reviews-section" aria-labelledby="reviews-title">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">Real-World Impact</div>
+          <h2 id="reviews-title" class="section-title">Tested &amp; Validated by Web Practitioners</h2>
+          <p class="section-subtitle">
+            See how prioritizing speed and inclusion delivers measurable business and user satisfaction dividends.
+          </p>
+        </div>
+
+        <div class="reviews-grid">
+
+          <!-- Review 1 -->
+          <article class="review-card" tabindex="0">
+            <div class="review-rating" aria-label="5 out of 5 stars">
+              <span aria-hidden="true">★★★★★</span>
+            </div>
+            <blockquote class="review-quote">
+              "By eliminating layout shifts and dropping bloated JS bundles, page bounce rates dropped by 42% on mobile devices. Clean semantic HTML delivers a tangible, measurable edge."
+            </blockquote>
+            <div class="review-author">
+              <img src="images/avatar-1.svg" 
+                   alt="Portrait avatar of Alex Chen" 
+                   width="48" 
+                   height="48" 
+                   loading="lazy" 
+                   decoding="async" 
+                   class="author-avatar">
+              <div class="author-info">
+                <div class="author-name">Alex Chen</div>
+                <div class="author-role">Staff Performance Engineer</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Review 2 -->
+          <article class="review-card" tabindex="0">
+            <div class="review-rating" aria-label="5 out of 5 stars">
+              <span aria-hidden="true">★★★★★</span>
+            </div>
+            <blockquote class="review-quote">
+              "The keyboard focus trap, clear ARIA announcements, and high contrast toggle make this a textbook reference for how accessibility should be baked into modern web architecture."
+            </blockquote>
+            <div class="review-author">
+              <img src="images/avatar-2.svg" 
+                   alt="Portrait avatar of Maya Patel" 
+                   width="48" 
+                   height="48" 
+                   loading="lazy" 
+                   decoding="async" 
+                   class="author-avatar">
+              <div class="author-info">
+                <div class="author-name">Maya Patel</div>
+                <div class="author-role">A11y &amp; Inclusive UX Lead</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Review 3 -->
+          <article class="review-card" tabindex="0">
+            <div class="review-rating" aria-label="5 out of 5 stars">
+              <span aria-hidden="true">★★★★★</span>
+            </div>
+            <blockquote class="review-quote">
+              "Zero external framework dependencies means sub-second initial load, zero supply-chain security vulnerabilities, and zero maintenance friction. Vanilla web standards are stronger than ever."
+            </blockquote>
+            <div class="review-author">
+              <img src="images/avatar-3.svg" 
+                   alt="Portrait avatar of Marcus Vance" 
+                   width="48" 
+                   height="48" 
+                   loading="lazy" 
+                   decoding="async" 
+                   class="author-avatar">
+              <div class="author-info">
+                <div class="author-name">Marcus Vance</div>
+                <div class="author-role">Lead Frontend Architect</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SECTION 8: INTERACTIVE CONTACT & FEEDBACK FORM
+         Fully accessible form with real-time validation, aria-describedby, and status alerts
+         ======================================================================= -->
+    <section id="contact" class="section-padding contact-section" aria-labelledby="contact-title">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-badge">Get in Touch</div>
+          <h2 id="contact-title" class="section-title">Share Your Performance &amp; A11y Feedback</h2>
+          <p class="section-subtitle">
+            Experience our client-side accessible form validation system. Every input provides real-time error states, keyboard support, and assistive technology alerts.
+          </p>
+        </div>
+
+        <div class="contact-card-wrapper">
+          
+          <!-- Live Form Feedback Alert Banner -->
+          <div id="form-alert-banner" 
+               class="form-alert-banner" 
+               role="status" 
+               aria-live="polite" 
+               hidden>
+            <div class="alert-content">
+              <svg class="alert-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <div id="form-alert-message" class="alert-text"></div>
+            </div>
+            <button type="button" class="alert-close-btn" id="alert-close-btn" aria-label="Dismiss notification message">&times;</button>
+          </div>
+
+          <!-- Contact Form Element -->
+          <form id="contact-form" class="contact-form" novalidate aria-labelledby="contact-title">
+            
+            <div class="form-row">
+              
+              <!-- Field 1: Full Name -->
+              <div class="form-group" id="group-fullname">
+                <label for="fullname" class="form-label">
+                  Full Name <span class="req-star" aria-hidden="true">*</span>
+                  <span class="sr-only">(required)</span>
+                </label>
+                <div class="input-wrapper">
+                  <input type="text" 
+                         id="fullname" 
+                         name="fullname" 
+                         class="form-input" 
+                         placeholder="e.g. Jane Doe" 
+                         required 
+                         aria-required="true"
+                         aria-describedby="desc-fullname err-fullname"
+                         autocomplete="name">
+                  <span class="input-status-icon" aria-hidden="true"></span>
+                </div>
+                <span id="desc-fullname" class="field-hint">Please enter at least 2 characters.</span>
+                <span id="err-fullname" class="field-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <!-- Field 2: Email Address -->
+              <div class="form-group" id="group-email">
+                <label for="email" class="form-label">
+                  Email Address <span class="req-star" aria-hidden="true">*</span>
+                  <span class="sr-only">(required)</span>
+                </label>
+                <div class="input-wrapper">
+                  <input type="email" 
+                         id="email" 
+                         name="email" 
+                         class="form-input" 
+                         placeholder="jane.doe@example.com" 
+                         required 
+                         aria-required="true"
+                         aria-describedby="desc-email err-email"
+                         autocomplete="email">
+                  <span class="input-status-icon" aria-hidden="true"></span>
+                </div>
+                <span id="desc-email" class="field-hint">We respect your privacy; zero spam.</span>
+                <span id="err-email" class="field-error" role="alert" aria-live="polite"></span>
+              </div>
+
+            </div>
+
+            <div class="form-row">
+              
+              <!-- Field 3: Inquiry Topic / Category -->
+              <div class="form-group" id="group-category">
+                <label for="category" class="form-label">
+                  Inquiry Topic <span class="req-star" aria-hidden="true">*</span>
+                  <span class="sr-only">(required)</span>
+                </label>
+                <div class="input-wrapper select-wrapper">
+                  <select id="category" 
+                          name="category" 
+                          class="form-select" 
+                          required 
+                          aria-required="true"
+                          aria-describedby="desc-category err-category">
+                    <option value="" disabled selected>Select a primary category...</option>
+                    <option value="perf">Core Web Vitals Optimization</option>
+                    <option value="a11y">WCAG Accessibility Audit</option>
+                    <option value="internship">Week 4 Internship Task Inquiry</option>
+                    <option value="code">Vanilla JS &amp; CSS Architecture</option>
+                    <option value="general">General Collaboration</option>
+                  </select>
+                </div>
+                <span id="desc-category" class="field-hint">Helps route your inquiry appropriately.</span>
+                <span id="err-category" class="field-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <!-- Field 4: Satisfaction / Rating -->
+              <div class="form-group" id="group-rating">
+                <fieldset class="form-fieldset">
+                  <legend class="form-label">
+                    Rate Page Performance &amp; A11y <span class="req-star" aria-hidden="true">*</span>
+                    <span class="sr-only">(required)</span>
+                  </legend>
+                  <div class="rating-options-group" role="radiogroup" aria-required="true" aria-describedby="err-rating">
+                    <label class="rating-radio-label">
+                      <input type="radio" name="rating" value="5" required class="rating-radio">
+                      <span class="rating-chip">5 ★ Exceptional</span>
+                    </label>
+                    <label class="rating-radio-label">
+                      <input type="radio" name="rating" value="4" class="rating-radio">
+                      <span class="rating-chip">4 ★ Great</span>
+                    </label>
+                    <label class="rating-radio-label">
+                      <input type="radio" name="rating" value="3" class="rating-radio">
+                      <span class="rating-chip">3 ★ Good</span>
+                    </label>
+                  </div>
+                  <span id="err-rating" class="field-error" role="alert" aria-live="polite"></span>
+                </fieldset>
+              </div>
+
+            </div>
+
+            <!-- Field 5: Message -->
+            <div class="form-group" id="group-message">
+              <label for="message" class="form-label">
+                Your Message / Feedback <span class="req-star" aria-hidden="true">*</span>
+                <span class="sr-only">(required)</span>
+              </label>
+              <textarea id="message" 
+                        name="message" 
+                        class="form-textarea" 
+                        rows="4" 
+                        placeholder="Write your feedback, observations on page load speed, keyboard tab flow, or audit results here..." 
+                        required 
+                        aria-required="true"
+                        aria-describedby="desc-message err-message char-counter"></textarea>
+              <div class="textarea-footer">
+                <span id="desc-message" class="field-hint">Minimum 10 characters required.</span>
+                <span id="char-counter" class="char-counter" aria-live="polite">0 / 500 characters</span>
+              </div>
+              <span id="err-message" class="field-error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <!-- Field 6: Accessibility Consent Checkbox -->
+            <div class="form-group checkbox-group" id="group-consent">
+              <label class="checkbox-label" for="consent">
+                <input type="checkbox" 
+                       id="consent" 
+                       name="consent" 
+                       class="form-checkbox" 
+                       required 
+                       aria-required="true"
+                       aria-describedby="err-consent">
+                <span class="checkbox-custom" aria-hidden="true"></span>
+                <span class="checkbox-text">
+                  I confirm that I tested this page's keyboard accessibility and reviewed the audit scores. <span class="req-star" aria-hidden="true">*</span>
+                </span>
+              </label>
+              <span id="err-consent" class="field-error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <!-- Form Action Buttons -->
+            <div class="form-actions">
+              <button type="submit" id="submit-btn" class="btn btn-primary btn-large">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+                Send Verified Feedback
+              </button>
+              
+              <button type="reset" id="reset-btn" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+                Reset Form
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       SITE FOOTER LANDMARK (Semantic <footer>)
+       ========================================================================= -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-container">
+      
+      <!-- Footer Column 1: Brand & Mission -->
+      <div class="footer-col brand-col">
+        <a href="#hero" class="brand-link" aria-label="PulseOptima Home">
+          <div class="brand-logo-wrapper" aria-hidden="true">
+            <svg class="brand-icon" viewBox="0 0 40 40" width="32" height="32" fill="none">
+              <rect width="40" height="40" rx="10" fill="url(#brandGradFooter)" />
+              <path d="M21 7 L11 22 L19 22 L16 34 L29 17 L21 17 Z" fill="#ffffff" />
+              <defs>
+                <linearGradient id="brandGradFooter" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#2563eb" />
+                  <stop offset="100%" stop-color="#7c3aed" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <span class="brand-title">Pulse<span class="brand-accent">Optima</span></span>
+        </a>
+        <p class="footer-tagline">
+          Setting the benchmark in frontend engineering. Demonstrating that high performance and universal accessibility go hand-in-hand.
+        </p>
+        <div class="footer-badges">
+          <span class="footer-pill">⚡ 100 Performance</span>
+          <span class="footer-pill">♿ WCAG 2.1 AA/AAA</span>
+          <span class="footer-pill">📱 Mobile Responsive</span>
+        </div>
+      </div>
+
+      <!-- Footer Column 2: Navigation Links -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Site Landmarks</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#hero">Hero &amp; Overview</a></li>
+          <li><a href="#features">Engineering Pillars</a></li>
+          <li><a href="#comparison">Before vs After Comparison</a></li>
+          <li><a href="#performance">Performance Deep Dive</a></li>
+          <li><a href="#accessibility">Accessibility Matrix</a></li>
+          <li><a href="#audit-simulator">Live Audit Lab</a></li>
+          <li><a href="#contact">Contact &amp; Validation</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer Column 3: Accessibility Commitment -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Accessibility Commitment</h3>
+        <p class="footer-statement">
+          PulseOptima is engineered to conform with <strong>W3C WCAG 2.1 Level AA &amp; Level AAA</strong>. If you encounter any barriers or have recommendations, please submit feedback via our verified contact form.
+        </p>
+        <div class="a11y-quick-actions">
+          <button type="button" class="btn btn-outline-sm" id="footer-a11y-open">
+            Open Accessibility Controls
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer Column 4: Project & Internship Details -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Project Submission</h3>
+        <p class="internship-meta">
+          <strong>Internship:</strong> Yuva Frontend Web Developer<br>
+          <strong>Milestone:</strong> Week 4 Internship Task<br>
+          <strong>Topic:</strong> Enhancing Web Page Performance and Accessibility<br>
+          <strong>Stack:</strong> HTML5 • CSS3 • Vanilla ES6 JS
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-container">
+        <p class="copyright-text">
+          &copy; 2026 PulseOptima. Developed with passion for web performance and digital accessibility.
+        </p>
+        
+        <!-- Back-to-Top Button -->
+        <a href="#top-header" id="back-to-top" class="back-to-top-btn" aria-label="Back to top of page" title="Back to top">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15" />
+          </svg>
+          <span class="sr-only">Back to top</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       GLOBAL TOAST NOTIFICATION CONTAINER
+       ========================================================================= -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Vanilla JavaScript Logic (Deferred at end of body) -->
+  <script src="script.js"></script>
+</body>
+</html>
